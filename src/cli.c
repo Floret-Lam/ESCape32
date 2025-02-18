@@ -151,7 +151,7 @@ CFG_MAP(XX)
 			break;
 		case 1: // 'info'
 			if (narg != 1) goto error;
-			appendstr(&pos, "ESCape32 v");
+			appendstr(&pos, "SEQURE V");
 			appendval(&pos, setbeepval(cfg.revision));
 			appendstr(&pos, ".");
 			appendval(&pos, cfg.revpatch);
