@@ -99,6 +99,7 @@ typedef struct {
 	char beacon;
 	char bec;
 	char led;
+	char curr_mul;
 } Cfg;
 
 typedef struct {
