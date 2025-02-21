@@ -58,6 +58,7 @@
 	XX(37, val, beacon) \
 	XX(38, val, bec) \
 	XX(39, val, led) \
+	XX(40, val, curr_mul) \
 
 static int beep = -1;
 
