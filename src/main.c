@@ -441,7 +441,7 @@ void adcdata(int t, int u, int v, int c, int a) {
 	temp1 = max((t = smooth(&st, t, 10)) >> 2, 0); // C
 	temp2 = max((u = smooth(&su, TEMP_SENS(u), 10)) >> 2, 0); // C
 	volt = smooth(&sv, v * VOLT_MUL * 131 >> 17, 7); // V/100
-	curr = smooth(&sc, c * CURR_MUL * 205 >> 11, 4); // A/100
+	curr = smooth(&sc, c * cfg.curr_mul * 205 >> 11, 4); // A/100	CURR_MUL
 	i += curr; // Current integral
 	if (!(tickms & 0x3ff)) {
 		csum = (q += i >> 10) * 91 >> 15; // mAh
