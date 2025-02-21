@@ -65,6 +65,7 @@ const Cfg cfgdata = {
 	.beacon = BEACON,           // Beacon volume (%) [0..100]
 	.bec = BEC,                 // BEC voltage control [0..3]
 	.led = LED,                 // LED on/off bits [0..15]
+	.curr_mul = CURR_MUL,
 };
 
 __attribute__((__section__(".cfg")))
