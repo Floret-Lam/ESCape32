@@ -161,10 +161,10 @@ CFG_MAP(XX)
 			appendstr(&pos, "]\nTemp: ");
 			appendval(&pos, temp1);
 			if (temp2) {
-				appendstr(&pos, "C, ext ");
+				appendstr(&pos, "℃, ext ");
 				appendval(&pos, temp2);
 			}
-			appendstr(&pos, "C\nVolt: ");
+			appendstr(&pos, "℃\nVolt: ");
 			appenddec(&pos, volt);
 			appendstr(&pos, "V\nCurr: ");
 			appenddec(&pos, curr);
