@@ -66,6 +66,7 @@ const Cfg cfgdata = {
 	.bec = BEC,                 // BEC voltage control [0..3]
 	.led = LED,                 // LED on/off bits [0..15]
 	.curr_mul = CURR_MUL,
+	.language = LANGUAGE,
 };
 
 __attribute__((__section__(".cfg")))
