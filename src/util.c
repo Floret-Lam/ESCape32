@@ -374,7 +374,6 @@ void checkcfg(void) {
 	cfg.led = 0;
 #endif
 	cfg.curr_mul = clamp(cfg.curr_mul, 1, 99);
-	cfg.language = clamp(cfg.language, 0, 3);
 }
 
 int savecfg(void) {
