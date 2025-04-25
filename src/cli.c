@@ -59,7 +59,6 @@
 	XX(38, val, bec) \
 	XX(39, val, led) \
 	XX(40, val, curr_mul) \
-	XX(41, val, language) \
 
 static int beep = -1;
 
