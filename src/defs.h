@@ -224,6 +224,3 @@
 #ifndef LED
 #define LED 0
 #endif
-#ifndef LANGUAGE
-#define LANGUAGE 0
-#endif
