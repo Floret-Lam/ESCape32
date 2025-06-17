@@ -100,6 +100,7 @@ typedef struct {
 	char bec;
 	char led;
 	char curr_mul;
+	char esc_name[256];
 } Cfg;
 
 typedef struct {
