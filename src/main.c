@@ -520,7 +520,7 @@ void main(void) {
 	memcpy(_cfg_start, _cfg, _cfg_end - _cfg_start); // Copy configuration to SRAM
 	checkcfg();
 	const int brushed = cfg.brushed;
-	const int mode = cfg.throt_mode;
+	int mode = cfg.throt_mode;
 	lock = cfg.duty_lock;
 	throt = cfg.throt_set * 20;
 	telmode = cfg.telem_mode;
@@ -612,6 +612,7 @@ void main(void) {
 		int range = cfg.sine_range * 20;
 		int delta = range ? 10 : 0;
 		int newduty = 0;
+		mode = cfg.throt_mode;
 		if (!running) curduty = 0;
 		if (input > 0) { // Forward
 			if (range + (sine ? delta : -delta) < input) newduty = scale(input, range + delta, 2000, cfg.duty_min * 20, cfg.duty_max * 20);
