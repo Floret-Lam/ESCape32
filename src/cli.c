@@ -214,6 +214,7 @@ CFG_MAP(XX)
 			break;
 		case 5: // 'save'
 			if (narg != 1 || !setbeepval(savecfg())) goto error;
+			else new_throt_mode = cfg.throt_mode;
 			break;
 		case 6: // 'reset'
 			if (narg != 1 || !setbeepval(resetcfg())) goto error;
