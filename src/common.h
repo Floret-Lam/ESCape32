@@ -115,6 +115,7 @@ extern const Cfg cfgdata;
 extern Cfg cfg;
 extern int throt, ertm, erpm, temp1, temp2, volt, curr, csum, dshotval, beepval;
 extern char analog, telreq, telmode, flipdir, beacon, dshotext;
+extern int new_throt_mode;
 
 void init(void);
 void initio(void);
