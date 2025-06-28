@@ -74,6 +74,7 @@ Cfg cfg = cfgdata;
 
 int throt, ertm, erpm, temp1, temp2, volt, curr, csum, dshotval, beepval = -1;
 char analog, telreq, telmode, flipdir, beacon, dshotext;
+int new_throt_mode;
 
 static int oldstep, step, sine, sync, ival, cutback, led;
 static char prep, fast, lock, tick, ready, reverse;
@@ -521,6 +522,7 @@ void main(void) {
 	checkcfg();
 	const int brushed = cfg.brushed;
 	int mode = cfg.throt_mode;
+	new_throt_mode = cfg.throt_mode;
 	lock = cfg.duty_lock;
 	throt = cfg.throt_set * 20;
 	telmode = cfg.telem_mode;
@@ -612,7 +614,7 @@ void main(void) {
 		int range = cfg.sine_range * 20;
 		int delta = range ? 10 : 0;
 		int newduty = 0;
-		mode = cfg.throt_mode;
+		mode = new_throt_mode;
 		if (!running) curduty = 0;
 		if (input > 0) { // Forward
 			if (range + (sine ? delta : -delta) < input) newduty = scale(input, range + delta, 2000, cfg.duty_min * 20, cfg.duty_max * 20);
