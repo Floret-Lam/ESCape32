@@ -218,6 +218,7 @@ CFG_MAP(XX)
 			break;
 		case 6: // 'reset'
 			if (narg != 1 || !setbeepval(resetcfg())) goto error;
+			else new_throt_mode = cfg.throt_mode;
 			break;
 		case 7: // 'play <music> [<volume>]'
 			if (narg < 2 || narg > 3) goto error;
