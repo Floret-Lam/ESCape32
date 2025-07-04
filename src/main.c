@@ -17,7 +17,7 @@
 
 #include "common.h"
 
-#define REVISION 13
+#define REVISION 14
 #define REVPATCH 1
 
 const Cfg cfgdata = {
