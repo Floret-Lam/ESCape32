@@ -7,7 +7,7 @@ SECTIONS {
 	} >cfg
 
 	.cfg : {
-		_cfg = .;
+		_cfg_start = .;
 		*(.cfg)
 		. = ALIGN(8);
 		_cfg_end = .;
@@ -15,6 +15,7 @@ SECTIONS {
 }
 
 _boot = ORIGIN(boot);
+_cfg = ORIGIN(cfg);
 _rom = ORIGIN(rom);
 _ram = ORIGIN(ram);
 
