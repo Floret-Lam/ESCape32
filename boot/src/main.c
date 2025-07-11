@@ -18,6 +18,7 @@
 #include "common.h"
 
 #define REVISION 3
+#define BOOT_VERSION 3
 
 #define CMD_PROBE  0
 #define CMD_INFO   1
@@ -28,6 +29,9 @@
 
 #define RES_OK    0
 #define RES_ERROR 1
+
+__attribute__((used, section(".boot_version"))) 
+const uint32_t boot_version = BOOT_VERSION;
 
 void main(void) {
 	init();
