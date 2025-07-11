@@ -53,6 +53,14 @@
 #define _GPIO(port, name) __GPIO(port, name)
 #define __GPIO(port, name) GPIO##port##_##name
 
+// 引导程序版本号存储地址（与引导程序中定义一致）
+#define BOOT_VERSION_ADDR (_cfg - sizeof(uint32_t))
+
+// 获取引导程序版本号的函数
+static inline uint32_t get_bootloader_version(void) {
+	return *(uint32_t *)BOOT_VERSION_ADDR;
+}
+
 typedef struct {
 	const uint16_t id;
 	const char revision;
