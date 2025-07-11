@@ -11,7 +11,7 @@ SECTIONS {
         	KEEP(*(.boot_version)) /* 强制保留该段，防止被优化 */
         	. = ALIGN(4);          /* 4字节对齐 */
         	_boot_version_end = .;
-    	} >cfg                   /* 仅存储在Flash，无需加载到RAM */
+    	} >ram AT >cfg  /* >ram: 运行地址，>cfg: 加载地址（紧接.cfg段后） */
 }
 
 _boot = ORIGIN(boot);
