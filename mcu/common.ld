@@ -1,11 +1,13 @@
 SECTIONS {
+	/* 引导版本号存储在单独的页 */
 	.boot_version : {
 		_boot_version = .;
-		. = . + 4;  // 为引导程序版本号保留4字节
+		KEEP(*(.boot_version)) /* 确保不会被优化掉 */
+		. = ALIGN(PAGE_SIZE);  /* 独占一个完整页 */
 	} >cfg
 
 	.cfg : {
-		_cfg_start = .;
+		_cfg = .;
 		*(.cfg)
 		. = ALIGN(8);
 		_cfg_end = .;
@@ -13,7 +15,6 @@ SECTIONS {
 }
 
 _boot = ORIGIN(boot);
-_cfg = ORIGIN(cfg);
 _rom = ORIGIN(rom);
 _ram = ORIGIN(ram);
 
