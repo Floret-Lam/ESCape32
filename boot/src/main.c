@@ -18,7 +18,10 @@
 #include "common.h"
 
 #define REVISION 3
-#define BOOT_VERSION 3
+#define BOOTLOADER_VERSION 3
+
+// 引导程序版本号存储地址（在配置数据之前）
+#define BOOT_VERSION_ADDR (_cfg - sizeof(uint32_t))
 
 #define CMD_PROBE  0
 #define CMD_INFO   1
@@ -33,9 +36,28 @@
 __attribute__((used, section(".boot_version"))) 
 const uint32_t boot_version = BOOT_VERSION;
 
+void write_boot_version(void) {
+	FLASH_KEYR = FLASH_KEYR_KEY1;
+	FLASH_KEYR = FLASH_KEYR_KEY2;
+	FLASH_SR = -1; // Clear errors
+	FLASH_CR = FLASH_CR_PG;
+	
+	// 写入引导程序版本号
+	*(uint32_t *)BOOT_VERSION_ADDR = BOOTLOADER_VERSION;
+	while (FLASH_SR & FLASH_SR_BSY);
+	
+	FLASH_CR = FLASH_CR_LOCK;
+}
+
 void main(void) {
 	init();
 	initio();
+
+	// 检查并写入引导程序版本号
+	if (*(uint32_t *)BOOT_VERSION_ADDR != BOOTLOADER_VERSION) {
+		write_boot_version();
+	}
+	
 	if (RCC_CSR & (RCC_CSR_SFTRSTF | RCC_CSR_OBLRSTF)) { // Reboot
 		RCC_CSR = RCC_CSR_RMVF; // Clear reset flags
 		sendval(RES_OK); // ACK after reboot
