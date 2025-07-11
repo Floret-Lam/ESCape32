@@ -397,8 +397,8 @@ int savecfg(void) {
 #define T uint32_t
 #endif
 	T *dst = (T *)_cfg;
-	T *src = (T *)_cfg_start;
-	T *end = (T *)_cfg_end;
+	T *src = (T *)&cfg;
+	T *end = (T *)((char *)&cfg + sizeof(cfg));
 #undef T
 	while (src < end) { // Write data
 		*dst++ = *src++;
@@ -414,7 +414,7 @@ int savecfg(void) {
 #else
 	if (FLASH_SR & (FLASH_SR_PROGERR | FLASH_SR_WRPERR)) return 0;
 #endif
-	return !memcmp(_cfg, _cfg_start, _cfg_end - _cfg_start);
+	return !memcmp(_cfg, &cfg, sizeof(cfg));
 }
 
 int resetcfg(void) {
