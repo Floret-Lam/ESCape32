@@ -45,7 +45,6 @@
 #endif
 
 extern char _rom[], _rom_end[], _ram_end[]; // Linker exports
-extern uint32_t _boot_version_flash_addr;
 
 void init(void);
 void initio(void);
