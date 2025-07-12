@@ -58,11 +58,6 @@ extern char _boot_version[], _boot_version_start[], _boot_version_end[];
 // 引导程序版本号存储地址（与引导程序中定义一致）
 #define BOOT_VERSION_ADDR (_boot_version_start)
 
-// 获取引导程序版本号的函数
-static inline uint32_t get_bootloader_version(void) {
-	return *(uint32_t *)BOOT_VERSION_ADDR;
-}
-
 typedef struct {
 	const uint16_t id;
 	const char revision;
