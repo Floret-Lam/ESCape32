@@ -45,6 +45,7 @@
 #endif
 
 extern char _rom[], _rom_end[], _ram_end[]; // Linker exports
+extern char _boot_version_start[];
 
 void init(void);
 void initio(void);
