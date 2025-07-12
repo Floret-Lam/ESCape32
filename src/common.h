@@ -54,7 +54,7 @@
 #define __GPIO(port, name) GPIO##port##_##name
 
 // 引导程序版本号存储地址（与引导程序中定义一致）
-#define BOOT_VERSION_ADDR (_cfg - sizeof(uint32_t))
+#define BOOT_VERSION_ADDR (_boot_version_start)
 
 // 获取引导程序版本号的函数
 static inline uint32_t get_bootloader_version(void) {
