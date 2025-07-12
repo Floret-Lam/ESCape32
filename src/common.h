@@ -53,6 +53,8 @@
 #define _GPIO(port, name) __GPIO(port, name)
 #define __GPIO(port, name) GPIO##port##_##name
 
+extern char _boot_version[], _boot_version_start[], _boot_version_end[];
+
 // 引导程序版本号存储地址（与引导程序中定义一致）
 #define BOOT_VERSION_ADDR (_boot_version_start)
 
