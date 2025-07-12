@@ -63,7 +63,13 @@
 
 static int beep = -1;
 
-uint32_t BootVersion = get_bootloader_version();
+// 获取引导程序版本号的函数
+static uint32_t get_bootloader_version(void) {
+	return *(uint32_t *)BOOT_VERSION_ADDR;
+}
+
+uint32_t BootVersion = 0xff;
+BootVersion = get_bootloader_version();
 
 static int split(char *str, char **vec, int len, const char *sep) {
 	int idx = 0;
