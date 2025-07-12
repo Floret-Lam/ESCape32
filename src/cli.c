@@ -63,6 +63,8 @@
 
 static int beep = -1;
 
+uint32_t BootVersion = get_bootloader_version();
+
 static int split(char *str, char **vec, int len, const char *sep) {
 	int idx = 0;
 	for (char *val; (val = strsep(&str, sep));) {
@@ -174,6 +176,11 @@ CFG_MAP(XX)
 			appendstr(&pos, "mAh\nERPM: ");
 			appendval(&pos, erpm);
 			appendstr(&pos, "\n");
+			if(BootVersion < 255) {
+				appendstr(&pos, "BOOT: V");
+				appendval(&pos, BootVersion);
+				appendstr(&pos, "\n");
+			}
 			break;
 		case 2: // 'show'
 			if (narg != 1) goto error;
