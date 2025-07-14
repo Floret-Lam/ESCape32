@@ -67,9 +67,6 @@ void write_boot_version(void) {
 
         	/* 等待操作完成 */
         	while (FLASH_SR & FLASH_SR_BSY);
-
-        	/* 清除标志位 */
-        	FLASH_SR = FLASH_SR_EOP | FLASH_SR_WRPERR | FLASH_SR_PGERR;
 	}
 
 	// 写入引导程序版本号
