@@ -69,7 +69,6 @@ static int get_bootloader_version(void) {
 }
 
 int BootVersion = 0xff;
-BootVersion = get_bootloader_version();
 
 static int split(char *str, char **vec, int len, const char *sep) {
 	int idx = 0;
@@ -182,6 +181,7 @@ CFG_MAP(XX)
 			appendstr(&pos, "mAh\nERPM: ");
 			appendval(&pos, erpm);
 			appendstr(&pos, "\n");
+			BootVersion = get_bootloader_version();
 			if(BootVersion < 255) {
 				appendstr(&pos, "BOOT: V");
 				appendval(&pos, BootVersion);
