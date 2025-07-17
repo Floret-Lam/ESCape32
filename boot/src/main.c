@@ -17,8 +17,6 @@
 
 #include "common.h"
 
-#define REVISION 3
-
 __attribute__((section(".boot_version"))) 
 const uint32_t bootloader_version = REVISION;
 
