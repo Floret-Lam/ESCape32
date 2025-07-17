@@ -65,7 +65,7 @@ void write_boot_version(void) {
 	}
 
 	// 写入引导程序版本号
-	*(uint32_t *)BOOT_VERSION_ADDR = REVISION;
+	*(uint32_t *)BOOT_VERSION_ADDR = bootloader_version;
 	while (FLASH_SR & FLASH_SR_BSY);
 	
 	FLASH_CR = FLASH_CR_LOCK;
