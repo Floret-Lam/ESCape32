@@ -44,8 +44,11 @@
 #define TIM3_IDR (GPIOB_IDR & 0x10) // B4
 #endif
 
-extern char _rom[], _rom_end[], _ram_end[]; // Linker exports
+/* 引导版本号存储地址 */
+#define BOOT_VERSION_ADDR 0x08001800
+
 extern char _boot_version_start[];
+extern char _rom[], _rom_end[], _ram_end[]; // Linker exports
 
 void init(void);
 void initio(void);
