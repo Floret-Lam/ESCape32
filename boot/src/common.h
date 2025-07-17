@@ -44,6 +44,8 @@
 #define TIM3_IDR (GPIOB_IDR & 0x10) // B4
 #endif
 
+#define REVISION 3
+
 /* 引导版本号存储地址 */
 #define BOOT_VERSION_ADDR 0x08001800
 
