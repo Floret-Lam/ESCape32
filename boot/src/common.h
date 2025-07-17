@@ -44,11 +44,10 @@
 #define TIM3_IDR (GPIOB_IDR & 0x10) // B4
 #endif
 
-#define REVISION 3
-
 /* 引导版本号存储地址 */
 #define BOOT_VERSION_ADDR 0x08001800
 
+extern const uint32_t bootloader_version;
 extern char _boot_version_start[];
 extern char _rom[], _rom_end[], _ram_end[]; // Linker exports
 
