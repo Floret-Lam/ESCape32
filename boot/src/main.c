@@ -34,48 +34,6 @@ const uint32_t bootloader_version = REVISION;
 #define RES_OK    0
 #define RES_ERROR 1
 
-void write_boot_version(void) {
-	FLASH_KEYR = FLASH_KEYR_KEY1;
-	FLASH_KEYR = FLASH_KEYR_KEY2;
-	FLASH_SR = -1; // Clear errors
-	FLASH_CR = FLASH_CR_PER;
-
-	uint32_t start_page_addr = BOOT_VERSION_ADDR & ~(PAGE_SIZE - 1);  // 对齐到页起始地址
-	uint32_t end_addr = BOOT_VERSION_ADDR + PAGE_SIZE;
-	int pages_to_erase = (end_addr - start_page_addr + PAGE_SIZE - 1) / PAGE_SIZE;
-	uint32_t current_addr = start_page_addr;
-	uint32_t page_num = (current_addr - (uint32_t)_rom) / PAGE_SIZE;
-
-	/* 4. 执行擦除 */
-	for (int i = 0; i < pages_to_erase; i++) {
-        	current_addr = start_page_addr + i * PAGE_SIZE;
-
-        	/* 等待Flash就绪 */
-        	while (FLASH_SR & FLASH_SR_BSY);
-
-		/* 设置擦除模式 */
-		FLASH_CR = FLASH_CR_PER;
-		
-        	/* 配置擦除地址/页号 */
-#ifdef STM32F0
-        	FLASH_AR = current_addr;
-        	FLASH_CR |= FLASH_CR_STRT;
-#else
-        	page_num = (current_addr - (uint32_t)_rom) / PAGE_SIZE;
-        	FLASH_CR = FLASH_CR_PER | FLASH_CR_STRT | (page_num << FLASH_CR_PNB_SHIFT);
-#endif
-
-        	/* 等待操作完成 */
-        	while (FLASH_SR & FLASH_SR_BSY);
-	}
-
-	// 写入引导程序版本号
-	*(uint32_t *)BOOT_VERSION_ADDR = REVISION;
-	while (FLASH_SR & FLASH_SR_BSY);
-	
-	FLASH_CR = FLASH_CR_LOCK;
-}
-
 void main(void) {
 	init();
 	initio();
