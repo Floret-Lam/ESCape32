@@ -61,3 +61,4 @@ uint32_t crc32(const char *buf, int len);
 int write(char *dst, const char *src, int len) __attribute__((__long_call__));
 void update(char *dst, const char *src, int len) __attribute__((__long_call__));
 void setwrp(int type);
+void write_boot_version(void);
