@@ -40,7 +40,6 @@ void write_boot_version(void) {
 	uint32_t end_addr = BOOT_VERSION_ADDR + PAGE_SIZE;
 	int pages_to_erase = (end_addr - start_page_addr + PAGE_SIZE - 1) / PAGE_SIZE;
 	uint32_t current_addr = start_page_addr;
-	uint32_t page_num = (current_addr - (uint32_t)_rom) / PAGE_SIZE;
 
 	/* 4. 执行擦除 */
 	for (int i = 0; i < pages_to_erase; i++) {
@@ -57,7 +56,7 @@ void write_boot_version(void) {
         	FLASH_AR = current_addr;
         	FLASH_CR |= FLASH_CR_STRT;
 #else
-        	page_num = (current_addr - (uint32_t)_rom) / PAGE_SIZE;
+        	uint32_t page_num = (current_addr - (uint32_t)_rom) / PAGE_SIZE;
         	FLASH_CR = FLASH_CR_PER | FLASH_CR_STRT | (page_num << FLASH_CR_PNB_SHIFT);
 #endif
 
