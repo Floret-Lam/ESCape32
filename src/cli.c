@@ -182,7 +182,7 @@ CFG_MAP(XX)
 			appendval(&pos, erpm);
 			appendstr(&pos, "\n");
 			BootVersion = get_bootloader_version();
-			if(BootVersion < 255) {
+			if((BootVersion > 0) && (BootVersion < 255)) {
 				appendstr(&pos, "BOOT: V");
 				appendval(&pos, BootVersion);
 				appendstr(&pos, "\n");
