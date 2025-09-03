@@ -454,7 +454,7 @@ void checkcfg(void) {
 #else
 	cfg.led = 0;
 #endif
-	cfg.curr_mul = clamp(cfg.curr_mul, 1, 99);
+	cfg.curr_mul = clamp(cfg.curr_mul, 0, 200);
 }
 
 int savecfg(void) {
