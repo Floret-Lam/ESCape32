@@ -60,6 +60,8 @@
 	XX(39, val, beacon) \
 	XX(40, val, bec) \
 	XX(41, val, led) \
+	XX(42, val, curr_mul) \
+	XX(43, str, esc_name) \
 
 static int beep = -1;
 
@@ -153,7 +155,7 @@ CFG_MAP(XX)
 			break;
 		case 1: // 'info'
 			if (narg != 1) goto error;
-			appendstr(&pos, "ESCape32 rev");
+			appendstr(&pos, "APP: V");
 			appendval(&pos, setbeepval(cfg.revision));
 			appendstr(&pos, ".");
 			appendval(&pos, cfg.revpatch);
@@ -162,10 +164,10 @@ CFG_MAP(XX)
 			appendstr(&pos, "]\nTemp: ");
 			appendval(&pos, temp1);
 			if (temp2) {
-				appendstr(&pos, "C, ext ");
+				appendstr(&pos, "℃, ext ");
 				appendval(&pos, temp2);
 			}
-			appendstr(&pos, "C\nVolt: ");
+			appendstr(&pos, "℃\nVolt: ");
 			appenddec(&pos, volt);
 			appendstr(&pos, "V\nCurr: ");
 			appenddec(&pos, curr);
