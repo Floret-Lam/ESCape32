@@ -230,3 +230,6 @@
 #ifndef LED
 #define LED 0
 #endif
+#ifndef ESC_NAME
+#define ESC_NAME "ESC"
+#endif
