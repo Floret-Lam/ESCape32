@@ -101,7 +101,7 @@ typedef struct {
 	char beacon;
 	char bec;
 	char led;
-	char curr_mul;
+	uint16_t curr_mul;
 	char esc_name[256];
 } Cfg;
 
